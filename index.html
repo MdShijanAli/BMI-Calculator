@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <!-- Load Tailwind CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css">
+</head>
+
+<body class="bg-gray-800">
+    <!-- Full-page background -->
+    <div class="">
+        <div class="flex flex-col items-center justify-center h-screen">
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h1 class="text-2xl font-bold mb-4">BMI Calculator</h1>
+                <form class="flex flex-col space-y-4">
+                    <div class="flex flex-col">
+                        <label class="font-bold mb-2" for="weight">Weight (kg)</label>
+                        <input class="p-2 border border-gray-300 rounded-md" type="number" id="weight" name="weight"
+                            required>
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="font-bold mb-2" for="height">Height (cm)</label>
+                        <input class="p-2 border border-gray-300 rounded-md" type="number" id="height" name="height"
+                            required>
+                    </div>
+                    <button
+                        class="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600 transition-colors duration-300"
+                        type="submit">Calculate BMI</button>
+                </form>
+                <!-- BMI Result text -->
+                <div class="mt-4">
+                    <p class="font-bold">BMI Result: <span class="text-green-500" id="bmi-result"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Load JavaScript to calculate BMI and display the result -->
+    <script>
+        const form = document.querySelector('form');
+        const bmiResult = document.getElementById('bmi-result');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value) / 100; // Convert cm to m
+            const bmi = weight / (height * height);
+            bmiResult.textContent = bmi.toFixed(2);
+        });
+    </script>
+</body>
+
+</html>
